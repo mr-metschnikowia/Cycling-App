@@ -1,0 +1,369 @@
+.body {
+  margin: 0;
+}
+
+section {
+  height: 100vh;
+  margin: none;
+}
+
+.container {
+  margin-top: 5%;
+}
+
+/* Table Header Layout */
+
+.table-wrapper {
+  width: 90%;
+  margin: auto;
+  background: #fff;
+  padding: 20px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 10px;
+}
+
+.table-title h2 {
+  margin: 6px 0 0 6px;
+  font-size: 22px;
+}
+
+/* Calendar View */
+
+#calendarView {
+  border-color: rgb(61, 67, 51);
+  color: rgb(61, 67, 51);
+  float: right;
+  height: 30px;
+  font-weight: bold;
+  font-size: 12px;
+  text-shadow: none;
+  min-width: 100px;
+  border-radius: 50px;
+  line-height: 13px;
+}
+
+div {
+  font-family: Roboto, Arial, sans-serif;
+  text-rendering: geometricPrecision;
+  font-size: small;
+}
+
+#calendar.fc {
+  max-width: 90%;
+  margin: 10px auto;
+  padding: 10px 10px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 500;
+  text-align: center;
+  display: block;
+  background-color: rgba(255, 255, 255, 0.7);
+  max-height: 40%;
+}
+
+/* Summary View */
+.summary {
+  margin-left: 6px;
+  float: right;
+  height: 30px;
+  font-weight: bold;
+  font-size: 12px;
+  text-shadow: none;
+  min-width: 100px;
+  border-radius: 50px;
+  line-height: 13px;
+}
+
+/* Modal Display Layout */
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  transition: all 0.5s ease 0.06s;
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 1.2rem;
+  max-width: 30%;
+  visibility: hidden;
+  box-shadow: 2px 2px 10px 0px rgba(99, 106, 119, 0.6);
+  border-radius: 5px;
+}
+
+.close {
+  color: #dedede;
+  /*float: right;*/
+  font-size: 2rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.close:before {
+  content: "Close";
+  font-size: 1rem;
+  display: none;
+  text-decoration: none;
+  align-self: center;
+  margin-top: 0.2rem;
+  font-weight: 400;
+}
+
+.close:hover:before {
+  display: initial;
+  color: #dedede;
+}
+
+.close:hover,
+.close:focus {
+  color: hsl(0, 100%, 70%);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.close:active,
+.close:before:active {
+  transition: all 60ms ease;
+  transform: scale(0.97);
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-header {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.modal-footer {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+.modal-footer>input {
+  margin-top: 0.8rem;
+  margin-bottom: 0rem;
+  margin-left: 0rem;
+  margin-right: 0rem;
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-row {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  padding: 0.4rem 0.4rem;
+  border-color: #fff;
+}
+
+.form-row:nth-child(odd) {
+  background: #f2f2f2;
+}
+
+.form-row label {
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: 50%;
+}
+
+.form-row input,
+.form-row select {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 50%;
+  border: 1px solid hsl(0, 0%, 90%);
+  padding: 0.2rem 0.2rem;
+  max-width: 50%;
+}
+
+.slideDown {
+  animation-name: slideDown;
+  -webkit-animation-name: slideDown;
+  animation-duration: 0.6s;
+  -webkit-animation-duration: 0.6s;
+  animation-timing-function: ease;
+  -webkit-animation-timing-function: ease;
+  visibility: visible !important;
+}
+
+.form-row input.error {
+  border-color: #f50000;
+}
+
+/* Visualisation Layout and Styling */
+
+#summaryVis {
+  max-width: 90%;
+  margin: 10px auto;
+  padding: 10px 10px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 500;
+  text-align: center;
+  display: block;
+  background-color: rgba(255, 255, 255, 0.7);
+  max-height: 40%;
+  display: none;
+}
+
+#tester {
+  align-items: center;
+}
+
+
+.form-row-summary {
+  width: 100;
+}
+
+.form-row {
+  display: inline-block;
+  /* width: 30%; */
+  background-color: none;
+}
+
+.form-row label {
+  display: inline-block;
+  width: 140px;
+  text-align: left;
+}
+
+.form-control {
+  display: inline-block;
+  width: 70%;
+  margin-bottom: 10px;
+}
+
+.submit button {
+  display: inline-block;
+}
+
+#goal {
+  width: 20%;
+  margin-left: 10%;
+}
+
+#goalValue .form-control {
+  display: inline-block;
+  width: 20%;
+}
+
+#goalPeriod {
+  width: 20%;
+}
+
+#goalVal {
+  display: none;
+}
+
+.resetGoal {
+  display: block;
+}
+
+.header .header-content {
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  top: 0;
+}
+
+.header .header-content .nav-bar {
+  display: flex;
+  list-style: none;
+  justify-content: flex-end;
+  height: 60px;
+  align-items: center;
+}
+
+.header .header-content .nav-bar .nav-item {
+  width: 150px;
+  text-align: center;
+  font-size: 17px;
+  color: rgb(44, 43, 43);
+}
+
+.header .header-content .nav-bar .nav-item:hover a {
+  cursor: pointer;
+  color: #ff7043;
+
+}
+
+.header .header-content .nav-bar .nav-item a, .header .header-content .nav-bar .nav-item .dropbtn {
+  text-decoration: none;
+  color: #000;
+  font-weight: bolder;
+}
+.header .header-content .nav-bar .user-info-wrapper{
+  display: none;
+  align-items: center;
+  margin-right: 10px;
+  
+}
+.header .header-content .nav-bar .user-info-wrapper .avatar-name{
+  display: flex;
+  align-items: center;
+  color: #ff7043;
+  margin-right: 10px;
+}
+.header .header-content .nav-bar .user-info-wrapper .avatar-name .user-avatar{
+  height: 40px;
+  width: 40px;
+  background: #ff7043;
+  color: #fff;
+  line-height: 40px;
+  text-align: center;
+  font-size: 32px;
+  margin: 0 10px;
+  border-radius: 50%;
+}
+.dropbtn {
+  background-color: transparent;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black !important;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown:hover .dropdown-content {display: block;}

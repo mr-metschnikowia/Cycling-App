@@ -1,0 +1,18 @@
+{
+  "name": "cycle-db",
+  "version": "1.0.0",
+  "description": "A simple web application for cyclists",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Lev Gorbunov",
+  "license": "ISC",
+  "dependencies": {
+    "basic-auth": "^2.0.1",
+    "body-parser": "^1.19.2",
+    "express": "^4.17.1",
+    "mongodb": "^4.5.0"
+  }
+}

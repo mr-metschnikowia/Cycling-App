@@ -1,0 +1,41 @@
+#fav-routes{
+ 
+    flex: 1;
+    /* background: #ccc; */
+    display: flex;
+  }
+  #fav-routes .fav-wrapper{
+    flex: 1;
+    /* background: #ccc; */
+    display: flex;
+    flex-direction: column;
+  }
+  #fav-routes .table-container{
+    padding: 20px;
+    padding-top: 0;
+    /* max-height: 30vh; */
+    background: #fff;
+    overflow-y: scroll;
+    flex: 3;
+  }
+  #fav-routes .table-container tbody{
+     max-height: 20vh;
+     background: #fff;
+     overflow-y: scroll;
+  }
+  #fav-routes .map-wrapper{
+    flex: 5;
+    /* background: #ccc; */
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+  }
+    
+  #fav-routes .route-list {
+    width: 400px;
+    padding: 20px;
+  }
+  #fav-routes .map-wrapper #fav-route-map{
+    height: 100%;
+    width: 100%;
+  }

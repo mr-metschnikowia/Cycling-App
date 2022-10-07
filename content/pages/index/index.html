@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Cyclists Platform </title>
+	<link rel="stylesheet" href="./index.css">
+	<link rel="stylesheet" href="../../lib/bulma.css"> <!-- bulma CSS library from https://bulma.io/documentation/elements/box/ -->
+	<script src="../../lib/vue.js"></script>
+</head>
+
+<body>
+	<div id="index-app">
+		<div class="header">
+			<div class="img-wrapper">
+				<img src="./imgs/21.jpeg" alt="" srcset="">
+				<!-- This picture is from Baidu,https://image.baidu.com/search/detail?ct=503316480&z=0&ipn=d&word=%E9%AA%91%E8%A1%8C&step_word=&hs=0&pn=14&spn=0&di=7060663421280190465&pi=0&rn=1&tn=baiduimagedetail&is=0%2C0&istype=0&ie=utf-8&oe=utf-8&in=&cl=2&lm=-1&st=undefined&cs=3495010349%2C3034713596&os=1189099430%2C1584774141&simid=4156065272%2C823085953&adpicid=0&lpn=0&ln=1927&fr=&fmq=1649367651896_R&fm=&ic=undefined&s=undefined&hd=undefined&latest=undefined&copyright=undefined&se=&sme=&tab=0&width=undefined&height=undefined&face=undefined&ist=&jit=&cg=&bdtype=0&oriquery=&objurl=https%3A%2F%2Fgimg2.baidu.com%2Fimage_search%2Fsrc%3Dhttp%3A%2F%2Fp3.itc.cn%2Fimages03%2F20200517%2F66757e27cb494a33a0dbe743922d387d.jpeg%26refer%3Dhttp%3A%2F%2Fp3.itc.cn%26app%3D2002%26size%3Df9999%2C10000%26q%3Da80%26n%3D0%26g%3D0n%26fmt%3Dauto%3Fsec%3D1651959658%26t%3Dec26e7b6c440aee2836352581fd090f8&fromurl=ippr_z2C%24qAzdH3FAzdH3Fooo_z%26e3Bf5i7_z%26e3Bv54AzdH3FwAzdH3Fnlcbana0l_0mamd0&gsm=f&rpstart=0&rpnum=0&islist=&querylist=&nojc=undefined&dyTabStr=MCwzLDEsNSw0LDgsNywyLDYsOQ%3D%3D -->
+			</div>
+			<div class="header-content">
+				<ul class="nav-bar">
+					<li class="nav-item">
+						<div class="dropdown">
+							<div class="dropbtn">Search</div>
+							<div class="dropdown-content">
+								<a href="../search/events.html">Events</a>
+								<a href="../search/clubs.html">Clubs</a>
+								<a href="../search/athletes.html">Athletes</a>
+							</div>
+						</div>
+					</li>
+					<li class="nav-item"><a href="../ride_feature/rides.html">Rides</a></li>
+					<li class="nav-item"> <a href="../routePlanner/routePlanner.html">Routes Planer</a> </li>
+					<div class="user-info-wrapper" v-if="userInfo && userInfo.userName">
+						<div class="avatar-name"  > 
+								<div class="user-avatar">
+									{{userInfo.userName[0].toUpperCase()}}
+								</div>
+								<div class="user-name">{{userInfo.userName}}</div>
+						</div>
+						<button class="logout button" @click="toLogout">Log out</button>
+					</div>
+					
+				</ul>
+				<div class="header-left">
+					<h1>Online Cyclists Platform</h1>
+					<div class="underline"></div>
+					<h2>provide everthing you need to </br> plan, record, and</br> organize your daily rides.</h2>
+					<button v-if="!userInfo.userKey" @click="toShowLogin" class="logIn">Log In Now</button>
+					<button v-if="!userInfo.userKey" @click="toShowRegister" class="createAccount">Create Account</button>
+				</div>
+				<div class="header-bottom">
+					<h1>Explore the functionalities we provide</h1>
+					<h2>The main aim of this platform is to help you to keep your trainning log, calculate useful statistics and
+						create new routes on an interactive map for you,</br> whether you are doing road races, mountain biking,
+						ultra--distance cycle races, or simple daily commutes</h2>
+					<div class="arrow"></div>
+				</div>
+			</div>
+		</div>
+		<div class="content">
+			<div class="part part-1">
+				<div class="left-img">
+
+					<img src="./imgs/1.jpg" alt="" srcset="">
+					<!-- This picture is from open source picture Pexels, Craig Adderley
+					https://www.pexels.com/photo/person-in-blue-and-red-shorts-riding-bicycle-2566069/ -->
+				</div>
+				<div class="right-content">
+					<h1>Record and visualize your rides</h1>
+					<div class="underline"></div>
+					<h2>By using our platform, you can keep a log of your training information about your daily
+						rides, such as distance and time. We visualize your training data for you to set goals for youself </h2>
+					<button @click="toRides">Try it Now!</button>
+				</div>
+
+			</div>
+		</div>
+		<div class="interval"></div>
+		<div class="content">
+			<div class="part part-2">
+				<div class="left-img">
+					<img src="./imgs/2.jpg" alt="" srcset="">
+					<!-- This picture is from open source picture Pexels, Dó Castle
+					https://www.pexels.com/photo/man-riding-bicycle-on-green-grass-field-2270329/ -->
+				</div>
+				<div class="right-content">
+					<h1>Search your intersts</h1>
+					<div class="underline"></div>
+					<h2>Our platform provides a series of events, clubs for you to join. you can also search for athletes and subscribe them. 
+						your events,clubs, and athletes subscribed will be recorded in database. </h2>
+					<button @click="toSearch">Try it Now!</button>
+				</div>
+
+			</div>
+		</div>
+		<div class="interval"></div>
+		<div class="content">
+			<div class="part part-3">
+				<div class="left-img">
+					<img src="./imgs/3.jpg" alt="" srcset="">
+				    <!-- This picture is from open source picture Pexels, Pack2Ride
+					https://www.pexels.com/photo/a-man-riding-a-bike-8920012/ -->
+				</div>
+				<div class="right-content">
+					<h1>Plan and favourite your routes</h1>
+					<div class="underline"></div>
+					<h2> you can use the routes planner to help you to locate places, set origin and destination to get the recommed routes,
+						along with the steps for you to arrive. you can view the 3D map by dragging the little-man icon, and favourite this route to your account!   </h2>
+					<button @click="toRoutePlanner">Try it Now!</button>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="footer">
+			<div class="footer-end">
+				<h2>University of St-Andrews, School of Computer Science</h2>
+				<h2>CS5003 practical 3 : Cyclists platform</h2>
+			</div>
+		</div>
+
+		<div :class="['modal', showLogin ? 'is-active': '']">
+			<div class="modal-background"></div>
+			<div class="modal-content">
+				<h1 class="title is-1">logIn</h1>
+				<div class="field">
+					<label class="label">userName</label>
+					<div class="control">
+						<input v-model="userName" class="input" type="text" placeholder="input username please">
+					</div>
+				</div>
+
+				<div class="field">
+					<label class="label">password</label>
+					<div class="control">
+						<input v-model="password" class="input" type="password" placeholder="input password please">
+					</div>
+				</div>
+				<button @click="toHiddenLogin" class="button is-danger is-rounded">Cancel</button>
+				<button @click="toLogin" class="button is-primary is-rounded">Confirm</button>
+			</div>
+			<button @click="toHiddenLogin" class="modal-close is-large" aria-label="close"></button>
+		</div>
+		<div :class="['modal', showRegister ? 'is-active': '']">
+			<div class="modal-background"></div>
+			<div class="modal-content">
+				<h1 class="title is-1">Create Account</h1>
+				<div class="field">
+					<label class="label">userName</label>
+					<div class="control">
+						<input v-model="userName" class="input" type="text" placeholder="input username please">
+					</div>
+				</div>
+
+				<div class="field">
+					<label class="label">password</label>
+					<div class="control">
+						<input  v-model="password" class="input" type="password" placeholder="input password please">
+					</div>
+				</div>
+				<div class="field">
+					<label class="label">Country</label>
+					<div class="control">
+						<div class="select is-primary">
+							<select v-model="country">
+								<option value="UK">UK</option>
+								<option value="US">US</option>
+								<option value="China">China</option>
+								<option value="France">France</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="field">
+					<label class="label">City</label>
+					<div class="control">
+						<input  v-model="city" class="input" type="text" placeholder="input city please">
+					</div>
+				</div>
+				<div class="field">
+					<label class="label">Gender</label>
+					<div class="control">
+						<div class="select is-primary">
+							<select v-model="gender">
+								<option value="M">Male</option>
+								<option value="F">Famale</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				
+			
+				<button @click="toHiddenRegister" class="button  is-danger is-rounded">Cancel</button>
+				<button @click="toRegister" class="button is-primary is-rounded">Confirm</button>
+			</div>
+			<button @click="toHiddenRegister" class="modal-close is-large" aria-label="close"></button>
+		</div>
+	</div>
+
+	
+	<script src="./index.js"></script>
+
+</body>
+
+</html>

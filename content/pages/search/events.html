@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../../lib/vue.js"></script>
+    <title>Cyclists Platform</title>
+    <link rel="stylesheet" href="../index/index.css" />
+  </head>
+
+  <body>
+    <div id="event">
+      <div class="header" style="height: fit-content; position: inherit">
+        <div
+          class="header-content"
+          style="height: fit-content; position: inherit"
+        >
+          <ul class="nav-bar">
+            <li class="nav-item">
+              <div class="dropdown">
+                <div class="dropbtn">Search</div>
+                <div class="dropdown-content">
+                  <a href="../search/events.html">Events</a>
+                  <a href="../search/clubs.html">Clubs</a>
+                  <a href="../search/athletes.html">Athletes</a>
+                </div>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a href="../ride_feature/rides.html">Rides</a>
+            </li>
+            <li class="nav-item">
+              <a href="../routePlanner/routePlanner.html">Routes Planer</a>
+            </li>
+            <div class="user-info-wrapper" v-if="userInfo && userInfo.userName">
+              <div class="avatar-name">
+                <div class="user-avatar">
+                  {{userInfo.userName[0].toUpperCase()}}
+                </div>
+                <div class="user-name">{{userInfo.userName}}</div>
+              </div>
+              <button class="logout button" @click="toLogout">Log out</button>
+            </div>
+          </ul>
+        </div>
+      </div>
+      <div class="container">
+        <div class="full">
+          <div class="row">
+            <div class="spans8">
+              <h1>Events</h1>
+            </div>
+          </div>
+          <form class="search" v-on:submit="search">
+            <input name="utf8" type="hidden" value="✓" />
+            <div class="inline-inputs align-bottom">
+              <input
+                type="text"
+                placeholder="Event Name"
+                v-model="name"
+                class="large"
+              />
+              <span>
+                <label>Region</label>
+                <select
+                  name="sport_type"
+                  v-model="region"
+                  id="sport_type"
+                  class="search-dropdown"
+                >
+                  <option value="">All</option>
+                  <option value="UK">UK</option>
+                  <option value="US">US</option>
+                  <option value="China">China</option>
+                  <option value="France">France</option>
+                </select>
+              </span>
+              <input
+                type="number"
+                placeholder="Distance"
+                v-model="distance"
+                class="large"
+              />
+              <input type="submit" value="Search" />
+            </div>
+          </form>
+          <ul class="striped container-fluid">
+            <li v-for="event in events" class="row">
+              <div class="spans">
+                <img
+                  class="image"
+                  alt=""
+                  src="https://d3nn82uaxijpm6.cloudfront.net/assets/avatar/club/large-821955110f8ba236e30f97e119275c470d66b7d4b849dacb7b93f498257c9c98.png"
+                />
+                <div class="details">
+                  <strong>{{event.name}} </strong>
+                  <br />
+                  <button class="btn" v-on:click="join">Join</button>
+                </div>
+              </div>
+              <div class="spans2">
+                <div>{{event.region}}</div>
+                <div>{{event.distance}} Km away</div>
+                <div>{{event.date}}</div>
+                <div>£{{event.price}}</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="footer-end">
+        <h2>University of St-Andrews, School of Computer Science</h2>
+        <h2>CS5003 practical 3 : Cyclists platform</h2>
+      </div>
+    </div>
+    <script src="./event_club_athlete.js"></script>
+  </body>
+</html>

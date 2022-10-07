@@ -1,0 +1,184 @@
+<!-- HTML for UI containing all elements for layout. 
+Credit is attributed for the use of libraries 
+including Google Fonts, Bootstrap, jQuery, FullCalendar, Moment.js, and Popper.js -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyclists Platform </title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/fullcalendar@5.1.0/main.css'>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.1.0/main.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.9.0.min.js"></script>
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body
+    style="margin:0;background-image: url('bg.png'); background-position: center center; background-repeat: no-repeat; background-attachment: fixed; background-size: cover; ">
+    <div class="header" style="height:fit-content;position: inherit;">
+
+        <div class="header-content" style="height: fit-content;position: inherit;">
+            <ul class="nav-bar">
+                <li class="nav-item">
+                  <div class="dropdown">
+                    <div class="dropbtn">Search</div>
+                    <div class="dropdown-content">
+                      <a href="../search/events.html">Events</a>
+                      <a href="../search/clubs.html">Clubs</a>
+                      <a href="../search/athletes.html">Athletes</a>
+                    </div>
+                  </div>
+                </li>
+                <li class="nav-item">
+                  <a href="../ride_feature/rides.html">Rides</a>
+                </li>
+                <li class="nav-item">
+                  <a href="../routePlanner/routePlanner.html">Routes Planer</a>
+                </li>
+                <div class="user-info-wrapper" id="user-info-wrapper">
+                  <div class="avatar-name">
+                    <div id="avatar" class="user-avatar"></div>
+                    <div id="userName" class="user-name"></div>
+                  </div>
+                  <button id="logout" class="logout button" >Log out</button>
+                </div>
+              </ul>
+        </div>
+    </div>
+    <section>
+        <div class="container">
+            <!-- Table Heading with buttons for calendar view and summary view -->
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-xs-8">
+                            <h2><b>RIDES</b></h2>
+                        </div>
+                        <div class="col-sm-4">
+                            <button type="button" class="summary" id="summary">Summary</button>
+                            <button type="button" class="calendar" id="calendarView">Calendar View</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="calendar"></div>
+
+            <!-- Modal Pop Up to log a ride -->
+            <div id="myModal" class="modal">
+
+                <div class="modal-content slideDown">
+
+                    <!-- Modal Pop Up containing form with input fields -->
+                    <div class="modal-header">
+                        <span class="close" id="closeModal">&times;</span>
+                        <h2>Log a Ride</h2>
+                    </div>
+                    <div class="modal-body">
+                        <form action="" class="modal-form">
+                            <div class="form-row">
+                                <label for="">Ride Name</label>
+                                <input type="text" class="form-control" name="rideName" id="rideName" required />
+                            </div>
+                            <div class="form-row">
+                                <label for="">Ride Date</label>
+                                <input type="date" name="date" class="form-control" id="date">
+                            </div>
+                            <div class="form-row">
+                                <label for="">Route</label>
+                                <input type="text" name="route" class="form-control" id="route">
+                                <!-- <select class="form-control" name="route" id="route">
+                                    <option value="" selected disabled>Pick an option</option>
+                                    <option value="volvo">Volvo</option>
+                                    <option value="saab">Saab</option>
+                                    <option value="mercedes">Mercedes</option>
+                                    <option value="audi">Audi</option>
+                                    <option value="Other">Other</option>
+                                </select> -->
+                            </div>
+                            <div class="form-row">
+                                <label for="">Ride Distance (KM)</label>
+                                <input type="number" id="distance" name="distance" class="form-control" id="distance">
+                            </div>
+                            <div class="form-row">
+                                <label for="">Ride Duration (Min)</label>
+                                <input type="number" id="time" name="time" class="form-control" id="time">
+                            </div>
+                            <div class="form-row">
+                                <label for="type">Cycle Type</label>
+                                <select class="form-control" name="cycle" id="cycle">
+                                    <option value="" selected disabled>Select Cycle Type</option>
+                                    <option value="Road Bike">Road Bike</option>
+                                    <option value="Mountain Bike">Mountain Bike</option>
+                                    <option value="Touring Bike">Touring Bike</option>
+                                    <option value="Folding Bike">Folding Bike</option>
+                                    <option value="Fixed Gear / Track Bike">Fixed Gear / Track Bike</option>
+                                    <option value="BMX">BMX</option>
+                                    <option value="Recumbent Bike">Recumbent Bike</option>
+                                    <option value="Hybrid Bike">Hybrid Bike</option>
+                                    <option value="Cruiser">Cruiser</option>
+                                    <option value="Cyclocross Bike">Cyclocross Bike</option>
+                                    <option value="Electric Bike">Electric Bike</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="">
+                                <label for="">Average Speed (KM/min)</label>
+                                <p name="speed" id="speed" value="">
+                                </p>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="deleteEntry" class="btn btn-default"
+                            data-dismiss="modal">Delete</button>
+                        <button type="button" id="addEntry" class="btn btn-primary">Save changes</button>
+                    </div>
+                    </form>
+
+                </div>
+
+            </div>
+
+            <!-- Container for summary visualizations including possible filter values and
+            container for graph to be plotted -->
+            <div id="summaryVis">
+                <div class="form-row-summary" id="summaryGoals">
+                    <select class="form-control" name="filter" id="filter">
+                        <option value="" selected disabled>Select Filter</option>
+                        <option value="Total Distance">Total Distance</option>
+                        <option value="Total Minutes">Total Minutes</option>
+                        <option value="Total Logs">Total Logs</option>
+                        <option value="Average Speed">Average Speed</option>
+                        <!-- <option value="All">All</option> -->
+                    </select>
+                    <button type="button" class="submit" id="submit">Submit</button>
+                </div>
+                <div id="goalVal">
+                    <label for="">Add Goal Value</label>
+                    <input type="number" id="goalValue" name="goalValue" class="form-control" id="goalValue">
+                    <button type="button" class="submitGoal" id="submitGoal">Submit</button>
+                </div>
+                <div id="tester"></div>
+            </div>
+
+        </div>
+    </section>
+    <script src='https://code.jquery.com/jquery-3.5.1.slim.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'></script>
+    <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.1.0/main.js'></script>
+    <script src="client.js"></script>
+
+</body>
+
+</html>

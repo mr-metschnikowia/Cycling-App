@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../../lib/vue.js"></script>
+  <script src="./components/favouriteRoute.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDK6CgX95FU-L5A9dMd3jFR6aNHJU_Qoy8&callback=initMap&libraries=places"></script>
+  <link rel="stylesheet" href="../../lib/bulma.css"> <!-- bulma CSS library from https://bulma.io/documentation/elements/box/ -->
+  <link rel="stylesheet" href="routePlanner.css">
+  <link rel="stylesheet" href="./components/favouriteRoute.css">
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_3304709_k1u4crw4ut.css">  <!-- icons form https://www.iconfont.cn/ -->
+   
+  </head>
+<body>
+    <div id="app">
+      <div class="header-bar">
+        <div class="header-content-left">
+           {{message}}
+        </div>
+        <div class="header-content-right">
+          <ul class="nav-bar">
+            <li class="nav-item">
+              <div class="dropdown">
+                <div class="dropbtn">Search</div>
+                <div class="dropdown-content">
+                  <a href="../search/events.html">Events</a>
+                  <a href="../search/clubs.html">Clubs</a>
+                  <a href="../search/athletes.html">Athletes</a>
+                </div>
+              </div>
+            </li>
+            <li class="nav-item"><a href="../ride_feature/rides.html">Rides</a></li>
+            <li class="nav-item  nav-item--active"> <a href="../routePlanner/routePlanner.html">Routes Planer</a> </li>
+            <div class="user-info-wrapper" v-if="userInfo && userInfo.userName">
+              <div class="avatar-name"  > 
+                  <div class="user-avatar">
+                    {{userInfo.userName[0].toUpperCase()}}
+                  </div>
+                  <div class="user-name">{{userInfo.userName}}</div>
+              </div>
+              <button class="logout button" @click="toLogout">Log out</button>
+            </div>
+            
+          </ul>
+
+         
+        </div>
+      </div>
+      <div class="main-body">
+        <div class="left-menu">
+          <div :class="['menu-item', menu.actived ? 'menu-item--actived':'']"  
+                v-for="(menu, index) in menus" :key="index"
+                @click="changeMenu(index)">
+            
+              <i :class="['iconfont', menu.icon]"></i>
+              <h3>{{menu.text}}</h3>
+          </div>
+         
+        </div>
+        <div class="right-content">
+          <div class="right-content-box">
+            
+            <div class="box-content">
+              <!-- fav routes -->
+              <div id="fav-routes" v-if="activedMenu == 'Fav routes'" >
+                <favourite-route/>
+                
+              </div>
+              <!-- routes -->
+              <div class="routes-content" v-show="activedMenu=='routes'" >
+                <div class="box-content-left">
+                  <h2 class="title is-4">input start and end please</h2>
+                  <div class="start-end-point-wrapper">
+                    <div class="point-item start-item">
+                      <div class="label">Start</div>
+                      <div class="value">
+                        <input id="start-point" class="input is-primary"  type="text" placeholder="input to search start point">
+                      </div>
+                    </div>
+                    <div class="point-item start-item">
+                      <div class="label">end</div>
+                      <div class="value">
+                        <input id="end-point" class="input is-primary" type="text" placeholder="Primary input">
+                      </div>
+                    </div>
+                    <button @click="handleConfirm" class="button is-primary is-fullwidth "> confirm </button>
+                  </div>
+                  <div class="recommend-routes-wrapper" v-if="routes && routes[0]">
+                    
+                    <ul class="route-list">
+                      <div class="route-list-item">
+                        <h2 class="title is-6">Steps </h2>
+                        <div class="steps-wrapper" v-if="routes && routes[0]">
+                          <div class="step" v-for="(step ,stepIndex) in routes[0].legs[0].steps">
+                            <p class="step-overview">
+                              <span> {{step.distance.text}}</span> 
+                              <span> {{step.duration.text}}</span> 
+                            </p>
+                            <p class="step-detail" v-html="step.instructions"></p>
+                          </div>
+                        </div>
+                        <button  @click="handleFavourite" class="button is-primary is-fullwidth">favourite </button>
+                      </div>
+                    </ul>
+                  </div>
+                  
+                </div>
+                <div id="container" class="box-content-right"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./routePlanner.js"></script>
+</body>
+</html>
