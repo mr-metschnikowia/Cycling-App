@@ -1,3 +1,11 @@
+A web application for cyclists built using Vue/Node/MongoDB.
+
+Features:
+- Users register to create an account.
+- Google Maps API allows users to plot routes, and to save their favourite routes.
+- Users are able to record rides and view a breakdown of key metrics, as-well as a training calendar.
+- Users have access to a directory of events, clubs and athletes. 
+
 How to run our web application:
 
 1. Configure computing environment:
