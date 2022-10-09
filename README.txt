@@ -16,7 +16,7 @@ How to run our web application:
 all required packages to run out Node programme from the package.json file!
 
 4. Setup MongoDB server and connect:
-- Setup a MongoDB server and database.
+- Install MongoDB server and database locally or setup MongoDB Atlas database.
 - Modify the config-db.js file to reflect your configuration.
 
 5. Run the Node server:
