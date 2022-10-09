@@ -361,38 +361,38 @@ app.use(express.static('content'));
 // serve up static content
 
 client.connect()
-    // connect to mongodb server
-.then(conn => {
-    userPasswordCollection = client.db().collection(config.collection);
-    userDetailsCollection = client.db().collection('userDetailsCollection');
-    cycleStatsCollection = client.db().collection('cycleStats');
-    favouriteRouteCollection = client.db().collection('favouriteRoute');
-    eventsCollection = client.db().collection('eventsCollection');
-    joinedEventsCollection = client.db().collection('joinedEventsCollection');
-    clubCollection = client.db().collection('clubCollection');
-    athleteCollection = client.db().collection('athleteCollection');
-    athleteSubscriptionCollection = client.db().collection('athleteSubscriptionCollection');
-    clubMemberCollection = client.db().collection('clubMemberCollection');
-    rideCollection = client.db().collection('clubCollection');
-    // create/fetch collections from remote database!
-    console.log("Connected!", conn.s.url.replace(/:([^:@]{1,})@/, ':****@')) 
-})
-    .catch(err => { console.log(`Could not connect to ${url.replace(/:([^:@]{1,})@/, ':****@')}`, err); throw err; })
-    
-    .then(() => {
-        clubCollection.drop()
-            .then(() => console.log("club collection dropped!"));
-        eventsCollection.drop()
-            .then(() => console.log("events collection dropped!"));
-        athleteCollection.drop()
-            .then(() => console.log("athlete collection dropped!"));
-    }
+.then(conn => console.log("Connected!", conn.s.url.replace(/:([^:@]{1,})@/, ':****@')))
+.catch(err => { console.log(`Could not connect to ${url.replace(/:([^:@]{1,})@/, ':****@')}`, err); throw err; })
+// connect to mongodb server
 
-        )
-    // dropping collection
-    // drop collection: https://www.mongodb.com/docs/manual/reference/method/db.collection.drop/ (accessed: 06/04/2022)
+userPasswordCollection = client.db().collection("users");
+userDetailsCollection = client.db().collection('userDetailsCollection');
+cycleStatsCollection = client.db().collection('cycleStats');
+favouriteRouteCollection = client.db().collection('favouriteRoute');
+eventsCollection = client.db().collection('eventsCollection');
+joinedEventsCollection = client.db().collection('joinedEventsCollection');
+clubCollection = client.db().collection('clubCollection');
+athleteCollection = client.db().collection('athleteCollection');
+athleteSubscriptionCollection = client.db().collection('athleteSubscriptionCollection');
+clubMemberCollection = client.db().collection('clubMemberCollection');
+rideCollection = client.db().collection('clubCollection');
+// create/fetch collections from remote database!
+
+/*
+try {
+    clubCollection.drop()
+        .then(() => console.log("club collection dropped!"));
+    eventsCollection.drop()
+        .then(() => console.log("events collection dropped!"));
+    athleteCollection.drop()
+        .then(() => console.log("athlete collection dropped!"));
+} catch (err) {
+    console.log(err);
+}
+*/
+// dropping collection
+// drop collection: https://www.mongodb.com/docs/manual/reference/method/db.collection.drop/ (accessed: 06/04/2022)
     
-    .then(() => {
         clubCollection.insertMany([
             {
                 "name": "API-Metrow-Bodyby JR",
@@ -644,10 +644,11 @@ client.connect()
             .catch(err => {
                 console.log("Could not add data ", err.message);
             })
-
-    })
 // inserting values into database collection
 
-.then(() => app.listen(API_PORT, () => console.log(`Listening on localhost: ${API_PORT}`)))
-.catch(err => console.log(`Could not start server`, err))
+    try {
+        app.listen(API_PORT, () => console.log(`Listening on localhost: ${API_PORT}`));
+    } catch (err) {
+        console.log(err);
+    }
 // launch server on API port 3000
