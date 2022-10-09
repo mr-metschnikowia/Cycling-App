@@ -1,9 +1,9 @@
 (function() {
-	const db_info = {url:'localhost',
-                        username: 'webuser',
-                        password: 'mongod',
-                        port: '23257',
-						database: 'cycle_app',
+	const db_info = {url:'XXX',
+                        username: 'XXX',
+                        password: 'XXX',
+                        port: 'XXX',
+			database: 'XXX',
                         collection: 'users'};
 
 	const moduleExports = db_info;
